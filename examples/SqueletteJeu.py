@@ -10,13 +10,17 @@ pygame.display.set_caption("Projet Tuteuré - Pygame")
 clock = pygame.time.Clock()
 running = True
 
-# Boucle principale
+# Couleurs
+WHITE = (255, 255, 255)
+BLUE = (50, 150, 255)
+
+# Boucle principale du jeu
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill((30, 30, 30))  # fond gris foncé
+    screen.fill(BLUE)
     pygame.display.flip()
     clock.tick(60)
 
