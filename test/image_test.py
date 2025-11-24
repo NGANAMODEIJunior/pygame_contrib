@@ -18,7 +18,7 @@ if _sdl_image_ver is not None:
     )
 
 
-def test_magic(f, magic_hexes):
+def _test_magic(f, magic_hexes):
     """Tests a given file to see if the magic hex matches."""
     data = f.read(len(magic_hexes))
     if len(data) != len(magic_hexes):
@@ -28,6 +28,11 @@ def test_magic(f, magic_hexes):
             return 0
     return 1
 
+ # compatibilité avec les tests existants
+test_magic = _test_magic
+
+# Empêche pytest de détecter la fonction comme test
+test_magic.__test__ = False
 
 class ImageModuleTest(unittest.TestCase):
     def testLoadIcon(self):
