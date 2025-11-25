@@ -231,7 +231,7 @@ class SurfaceTypeTest(unittest.TestCase):
         color = (25, 25, 25, 25)
         fill_rect = pygame.Rect(0, 0, 16, 16)
         s1 = pygame.Surface((32, 32), pygame.SRCALPHA, 32)
-        s1.fill(color, fill_rect)
+        s1.fill(color=color, rect=fill_rect)
 
         for pt in test_utils.rect_area_pts(fill_rect):
             self.assertEqual(s1.get_at(pt), color)
@@ -249,7 +249,12 @@ class SurfaceTypeTest(unittest.TestCase):
         blit_surf.set_colorkey((255, 0, 255), pygame.RLEACCEL)
         self.assertTrue(blit_surf.get_flags() & pygame.RLEACCELOK)
         surf.blit(blit_surf, (0, 0))
-        blit_surf.fill(color)
+        # Test déjà présent
+        # blit_surf.fill(color)
+
+         # Test avec keywords
+        blit_surf.fill(color=color)
+
         self.assertEqual(
             blit_surf.mustlock(), (blit_surf.get_flags() & pygame.RLEACCEL) != 0
         )
